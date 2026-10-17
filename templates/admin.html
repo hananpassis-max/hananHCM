@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Management Panel</title>
+    <link href="https://jsdelivr.net" rel="stylesheet">
+</head>
+<body class="bg-light p-4">
+    <div class="container bg-white p-4 rounded shadow-sm mx-auto" style="max-width: 600px;">
+        <h3 class="mb-3">➕ Add New Entry</h3>
+        <form method="POST" class="mb-4">
+            <input type="hidden" name="action" value="add_customer">
+            <div class="mb-2"><input type="text" name="name" class="form-control" placeholder="Full Name" required></div>
+            <div class="mb-2"><input type="text" name="phone" class="form-control" placeholder="Phone Number" required></div>
+            <div class="mb-2"><input type="text" name="address" class="form-control" placeholder="House Address" required></div>
+            <button type="submit" class="btn btn-success w-100">Save Customer</button>
+        </form>
+
+        <h3>📋 Active Customers</h3>
+        <div class="list-group">
+            {% for customer in customers %}
+                <div class="list-group-item">
+                    <strong>[{{ customer.id }}]</strong> {{ customer.name }} — {{ customer.phone }}
+                </div>
+            {% endfor %}
+        </div>
+        <a href="/" class="d-block mt-3 text-center">🏠 Back Home</a>
+    </div>
+</body>
+</html>

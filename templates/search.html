@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Records</title>
+    <link href="https://jsdelivr.net" rel="stylesheet">
+</head>
+<body class="bg-light p-4">
+    <div class="container bg-white p-4 rounded shadow-sm mx-auto" style="max-width: 500px;">
+        <h3 class="mb-3 text-center">📱 Mobile Record Lookup</h3>
+        <form method="POST" class="mb-4">
+            <div class="mb-3">
+                <select name="search_type" class="form-select">
+                    <option value="name">Search by Name</option>
+                    <option value="phone">Search by Phone Number</option>
+                    <option value="id">Search by Customer ID</option>
+                </select>
+            </div>
+            <div class="input-group">
+                <input type="text" name="query" class="form-control" placeholder="Enter keywords..." required>
+                <button type="submit" class="btn btn-primary">Go</button>
+            </div>
+        </form>
+
+        {% if results %}
+            <h5>Results Found:</h5>
+            {% for customer in results %}
+                <div class="border p-3 rounded mb-2 bg-light">
+                    <strong>ID:</strong> {{ customer.id }}<br>
+                    <strong>Name:</strong> {{ customer.name }}<br>
+                    <strong>Phone:</strong> {{ customer.phone }}<br>
+                    <strong>Address:</strong> {{ customer.address }}
+                </div>
+            {% endfor %}
+        {% elif results == [] %}
+            <p class="text-danger text-center">No system matches located.</p>
+        {% endif %}
+        <a href="/" class="d-block mt-3 text-center">🏠 Back Home</a>
+    </div>
+</body>
+</html>
